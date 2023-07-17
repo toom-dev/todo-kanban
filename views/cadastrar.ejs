@@ -1,31 +1,31 @@
 <%- include('./includes/header'); %>
 <body>
   <section class="login">
-    <form id="form-login">
+    <form id="form-register">
       <div class="form-label">
         <label for="email">Seu E-mail</label>
-        <input type="email" name="email" id="email" required>
+        <input type="email" name="email" id="email">
       </div>
       <div class="form-label">
         <label for="password">Sua senha</label>
-        <input type="password" name="password" id="password" required>
+        <input type="password" name="password" id="password">
       </div>
       <div class="form-label">
-        <a href="/cadastrar">Cadastrar</a>
+        <a href="/">Fazer login</a>
       </div>
       <div class="form-label">
-        <button>Entrar</button>
+        <button>Cadastrar</button>
       </div>
     </form>
   </section>
 
   <script>
-    document.getElementById('form-login').addEventListener('submit', async (e) => {
+    document.getElementById('form-register').addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      const response = await fetch('/api/login',{
+      const response = await fetch('/api/register',{
         headers: new Headers({
           'Content-Type': 'application/json'
         }),
@@ -38,9 +38,9 @@
       if(response.status == 200) {
         location.pathname = '/dashboard'
       } else if (response.status == 401) {
-        alert('E-mail já cadastrado')
+        alert('Email já cadastrado')
       } else {
-        alert('Verifique seus dados!')
+        alert('Houve um erro ao cadastrar!')
       }
     })
   </script>

@@ -1,9 +1,9 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: 'nexumapp.ddns.net',
   user: 'root',
-  password: '',
+  password: '@Clay10@12',
   database: 'todo'
 })
 

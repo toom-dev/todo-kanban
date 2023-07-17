@@ -1,0 +1,43 @@
+<%- include('./includes/header'); %>
+<body>
+  <section class="conteudo">
+    <ul class="roles">
+      <% roles.forEach(role => {%>
+        <li class="role" id="<%= role.id_role %>">
+          <%= role.name %>
+          <ul class="items" data-id-role=<%= role.id_role %>>
+            <% tasks.forEach(task => {%>
+              <% if(task.id_role == role.id_role) { %>
+              <li class="item" draggable="true" data-id-todo=<%= task.id_todo %> data-id-role=<%= task.id_role %>>
+                <%= task.description %>
+              </li>
+              <%}%>
+            <%})%>
+          </ul>
+          <button class="add-task" onclick='openTaskPopup(<%-JSON.stringify(role)%>)'>Adicionar Tarefa <img src="assets/icons/add-r.svg"/></img></button>
+        </li>
+      <%});%>
+    </ul>
+  </section>
+
+  <div id="pop-up">
+    <div class="pop-up-conteudo">
+      <h3 id="role-name"></h3>
+      <div class="form-label">
+        <input type="text" name="task-name" id="task-name"><button onclick="createTask()" id="create-task">Criar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dragndrop.js"></script>
+  <script src="js/createTask.js"></script>
+  <script>
+    const openTaskPopup = (role) => {
+      localStorage.setItem('role', JSON.stringify(role))
+      document.querySelector('#pop-up').classList.add('active');
+      const roleName = document.getElementById('role-name');
+      roleName.innerText = role.name;
+    }
+  </script>
+</body>
+<%- include('./includes/footer'); %>
