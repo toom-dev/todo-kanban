@@ -44,3 +44,6 @@ Para rodar o projeto local, você precisa:
 
 # Banco de Dados
 Para o banco de dados foi utilizado o MySQL, onde está hospedado em meu servidor, então não há necessidade de subir a tabela no local.
+
+# Projeto no ar
+Realizei o deploy do projeto na Vercel e pode ser acessado pelo link [https://todo-jade-xi.vercel.app/](https://todo-jade-xi.vercel.app/)
