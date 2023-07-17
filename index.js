@@ -28,8 +28,21 @@ function verifyJWT(req, res, next){
     next();
   });
 }
+function verifyLogin(req, res, next){
+  const {user_token} = req.cookies;
+  if (!user_token) {
+    next();
+    return 0;
+  };
+  
+  jwt.verify(user_token, jwtSecret, function(err, decoded) {
+    if (err) return res.status(500).redirect('/');
+    
+    res.redirect('/dashboard');
+  });
+}
 
-app.get('/', (req, res) => {
+app.get('/', verifyLogin, (req, res) => {
   res.render('index')
 });
 
@@ -42,7 +55,7 @@ app.get('/dashboard', verifyJWT, (req, res) => {
     })
   })
 });
-app.get('/cadastrar', (req, res) => {
+app.get('/cadastrar', verifyLogin, (req, res) => {
   res.render('cadastrar')
 });
 

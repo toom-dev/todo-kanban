@@ -162,6 +162,10 @@ form {
   border-radius: 30px;
   gap: 15px;
 }
+form a {
+  color: #000;
+  text-decoration: none;
+}
 form .form-label {
   display: flex;
   justify-content: center;
